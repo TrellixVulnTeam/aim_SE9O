@@ -44,6 +44,10 @@ class Sequence(Generic[T]):
 
         self._sequence_meta_tree = None
         self._series_tree = run.series_run_tree.subtree((context.idx, name))
+        try:
+            self._series_tree.last()
+        except KeyError:
+            self._series_tree = run.series_run_tree_old.subtree((context.idx, name))
 
         self._hash: int = None
 

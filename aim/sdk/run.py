@@ -288,6 +288,10 @@ class Run(StructuredRunMixin):
             'seqs', self.hash, read_only=read_only
         ).subtree('seqs').subtree('v2').subtree('chunks').subtree(self.hash)
 
+        self.series_run_tree_old: TreeView = self.repo.request_tree(
+            'seqs', self.hash, read_only=read_only
+        ).subtree('seqs').subtree('chunks').subtree(self.hash)
+
         if not read_only:
             if log_system_params:
                 system_params = {
